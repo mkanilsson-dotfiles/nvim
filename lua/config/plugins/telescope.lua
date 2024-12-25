@@ -7,6 +7,9 @@ return {
     },
     config = function()
         require("telescope").setup({
+            defaults = {
+                file_ignore_patterns = { "%__virtual.cs$", "%__virtual.html$" }
+            },
             pickers = {
                 find_files = {
                     theme = "ivy"
@@ -33,9 +36,6 @@ return {
                 cwd = vim.fn.stdpath("config")
             }
         end)
-
-        local x = 4
-        print(x)
 
         vim.keymap.set("n", "<space>cD", require("telescope.builtin").lsp_references)
         vim.keymap.set("n", "<space>ci", require("telescope.builtin").lsp_implementations)
