@@ -1,5 +1,5 @@
 require("config.lazy")
-require("plugins.tt")
+require("plugins.autoload")
 
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
