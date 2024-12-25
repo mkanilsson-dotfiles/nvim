@@ -18,7 +18,7 @@ return {
             })
             vim.keymap.set("n", "<space>.", function()
                 vim.cmd { cmd = "Oil", args = { vim.fn.expand("%:p:h") } }
-            end)
+            end, { desc = "Open current directory" })
         end
     }
 }

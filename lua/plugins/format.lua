@@ -21,4 +21,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.keymap.set("n", "<space>ctf", function()
     state = not state
-end)
+end, { desc = "Toggle format on save" })

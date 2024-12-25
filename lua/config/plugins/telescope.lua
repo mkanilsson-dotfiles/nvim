@@ -29,17 +29,20 @@ return {
             }
         })
 
-        vim.keymap.set("n", "<space><space>", require("telescope.builtin").find_files)
-        vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags)
+        vim.keymap.set("n", "<space><space>", require("telescope.builtin").find_files, { desc = "Find files" })
+        vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Get help" })
         vim.keymap.set("n", "<space>fc", function()
             require("telescope.builtin").find_files {
                 cwd = vim.fn.stdpath("config")
             }
-        end)
+        end, { desc = "Find files (config)" })
 
-        vim.keymap.set("n", "<space>cD", require("telescope.builtin").lsp_references)
-        vim.keymap.set("n", "<space>ci", require("telescope.builtin").lsp_implementations)
-        vim.keymap.set("n", "<space>,", require("telescope.builtin").buffers)
-        vim.keymap.set("n", "<space>sp", require("telescope.builtin").live_grep)
+        vim.keymap.set("n", "<space>cD", require("telescope.builtin").lsp_references, { desc = "Find references" })
+        vim.keymap.set("n", "<space>ci", require("telescope.builtin").lsp_implementations, {
+            desc = "Find implementations"
+        })
+
+        vim.keymap.set("n", "<space>,", require("telescope.builtin").buffers, { desc = "Find buffer" })
+        vim.keymap.set("n", "<space>sp", require("telescope.builtin").live_grep, { desc = "Search" })
     end
 }

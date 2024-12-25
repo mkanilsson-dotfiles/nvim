@@ -37,4 +37,4 @@ local toggle_terminal = function()
     end
 end
 
-vim.keymap.set('n', '<space>ot', toggle_terminal, { noremap = true, silent = true })
+vim.keymap.set('n', '<space>ot', toggle_terminal, { noremap = true, silent = true, desc = "Toggle terminal" })

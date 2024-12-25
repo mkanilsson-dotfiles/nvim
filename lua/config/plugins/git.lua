@@ -23,7 +23,7 @@ return {
             }
 
 
-            vim.keymap.set("n", "<space>gg", neogit.open)
+            vim.keymap.set("n", "<space>gg", neogit.open, { desc = "Git" })
         end
     }
 }
