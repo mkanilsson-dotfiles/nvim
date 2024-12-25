@@ -5,6 +5,7 @@ vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.showtabline = 0
 
 vim.keymap.set("n", "<space>ls", "<cmd>source %<CR>")
 vim.keymap.set("n", "<space>x", ":.lua<CR>")
