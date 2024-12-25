@@ -25,6 +25,9 @@ vim.keymap.set("n", "<space>qp", "<cmd>cprev<CR>", { desc = "QuickFix prev" })
 vim.keymap.set({ "n", "v" }, "j", "gj")
 vim.keymap.set({ "n", "v" }, "k", "gk")
 
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
+
 vim.keymap.set('t', '<esc><esc>', "<C-\\><C-n><C-w>h")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
