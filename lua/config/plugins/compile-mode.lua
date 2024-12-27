@@ -10,5 +10,7 @@ return {
         vim.g.compile_mode = {
             baleia_setup = true,
         }
+
+        vim.keymap.set("n", "<space>pc", "<CMD>Compile<CR>", { desc = "Compile" })
     end
 }
