@@ -30,7 +30,8 @@ return {
         })
 
         vim.keymap.set("n", "<space><space>", require("telescope.builtin").find_files, { desc = "Find files" })
-        vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Get help" })
+        vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Help" })
+        vim.keymap.set("n", "<space>fm", require("telescope.builtin").man_pages, { desc = "Man page" })
         vim.keymap.set("n", "<space>fc", function()
             require("telescope.builtin").find_files {
                 cwd = vim.fn.stdpath("config")
