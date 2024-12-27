@@ -22,3 +22,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.keymap.set("n", "<space>ctf", function()
     state = not state
 end, { desc = "Toggle format on save" })
+
+vim.api.nvim_create_autocmd("DirChanged", {
+    group = vim.api.nvim_create_augroup("DirChange", { clear = true }),
+    pattern = "*",
+    callback = function(args)
+        if vim.loop.fs_stat(".disable-format-on-save") then
+            state = false
+        else
+            state = true
+        end
+    end,
+})
