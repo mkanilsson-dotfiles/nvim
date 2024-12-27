@@ -31,7 +31,14 @@ vim.keymap.set("n", "<space>bD", function()
 
     if answer == 1 then
         for _, buf in ipairs(to_close) do
-            vim.api.nvim_buf_delete(buf, { force = false, unload = false })
+            local status, err = pcall(function()
+                vim.api.nvim_buf_delete(buf, { force = false, unload = false })
+            end)
+
+            if not status then
+                vim.print("Failed to delete buffer \"" ..
+                vim.api.nvim_buf_get_name(buf) .. "\": Might have unsaved changes")
+            end
         end
     end
 end, { desc = "Delete all other buffers" })
