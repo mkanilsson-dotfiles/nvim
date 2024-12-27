@@ -1,4 +1,3 @@
--- Create a terminal buffer and window if not already created
 local state = {
     buf = nil,
     win = nil
