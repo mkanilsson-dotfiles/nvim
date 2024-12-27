@@ -11,6 +11,10 @@ return {
             baleia_setup = true,
         }
 
-        vim.keymap.set("n", "<space>pc", "<CMD>Compile<CR>", { desc = "Compile" })
+        vim.keymap.set("n", "<space>pc", function()
+            vim.cmd { cmd = "Compile" }
+            vim.cmd.wincmd("J")
+            vim.api.nvim_win_set_height(0, 15)
+        end, { desc = "Compile" })
     end
 }
