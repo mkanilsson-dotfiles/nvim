@@ -27,7 +27,7 @@ vim.keymap.set("n", "<space>bD", function()
         return
     end
 
-    local answer = vim.fn.confirm("Do you want to close " .. #to_close .. " buffers?", "&Yes\n&no", 2)
+    local answer = vim.fn.confirm("Do you want to close " .. #to_close .. " buffers?", "&Yes\n&No", 2)
 
     if answer == 1 then
         for _, buf in ipairs(to_close) do
@@ -37,7 +37,7 @@ vim.keymap.set("n", "<space>bD", function()
 
             if not status then
                 vim.print("Failed to delete buffer \"" ..
-                vim.api.nvim_buf_get_name(buf) .. "\": Might have unsaved changes")
+                    vim.api.nvim_buf_get_name(buf) .. "\": Might have unsaved changes")
             end
         end
     end
