@@ -42,7 +42,11 @@ return {
             desc = "Find implementations"
         })
 
-        vim.keymap.set("n", "<space>,", require("telescope.builtin").buffers, { desc = "Find buffer" })
+        vim.keymap.set("n", "<space>,", function()
+            require("telescope.builtin").buffers {
+                ignore_current_buffer = true
+            }
+        end, { desc = "Find buffer" })
         vim.keymap.set("n", "<space>sp", require("telescope.builtin").live_grep, { desc = "Search" })
     end
 }
