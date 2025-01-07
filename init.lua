@@ -7,6 +7,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.showtabline = 0
 vim.opt.wrap = false
+vim.opt.expandtab = true
 
 vim.keymap.set("n", "<space>ls", "<cmd>source %<CR>")
 vim.keymap.set("n", "<space>x", ":.lua<CR>", { desc = "Execute lua" })
