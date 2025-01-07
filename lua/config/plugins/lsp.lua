@@ -19,6 +19,7 @@ return {
 
             lsp.lua_ls.setup { capabilities = capabilities }
             lsp.rust_analyzer.setup { capabilities = capabilities }
+            lsp.ts_ls.setup { capabilities = capabilities }
 
             vim.keymap.set("n", "<space>ch", function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
