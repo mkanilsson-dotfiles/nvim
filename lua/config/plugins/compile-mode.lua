@@ -13,8 +13,14 @@ return {
 
         vim.keymap.set("n", "<space>pc", function()
             vim.cmd { cmd = "Compile" }
-            vim.cmd.wincmd("J")
-            vim.api.nvim_win_set_height(0, 15)
+
+            local suffix = "*compilation*"
+
+            if vim.api.nvim_buf_get_name(0):sub(- #suffix) == suffix then
+                vim.cmd.wincmd("J")
+                vim.api.nvim_win_set_height(0, 15)
+            end
+
         end, { desc = "Compile" })
     end
 }
