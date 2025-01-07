@@ -9,6 +9,8 @@ vim.opt.showtabline = 0
 vim.opt.wrap = false
 vim.opt.expandtab = true
 vim.opt.cursorline = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.keymap.set("n", "<space>ls", "<cmd>source %<CR>")
 vim.keymap.set("n", "<space>x", ":.lua<CR>", { desc = "Execute lua" })
