@@ -22,7 +22,7 @@ return {
                     '--logLevel=Information',
                     '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
                     '--razorSourceGenerator=' .. vim.fs.joinpath(
-                        vim.fn.stdpath 'data' --[[@as string]],
+                        vim.fn.stdpath 'data'--[[@as string]] ,
                         'mason',
                         'packages',
                         'roslyn',
@@ -30,7 +30,7 @@ return {
                         'Microsoft.CodeAnalysis.Razor.Compiler.dll'
                     ),
                     '--razorDesignTimePath=' .. vim.fs.joinpath(
-                        vim.fn.stdpath 'data' --[[@as string]],
+                        vim.fn.stdpath 'data'--[[@as string]] ,
                         'mason',
                         'packages',
                         'rzls',
@@ -44,6 +44,15 @@ return {
                     handlers = require 'rzls.roslyn_handlers',
                 },
             }
+
+            local group = vim.api.nvim_create_augroup("IgnoreUnsavedChanges", { clear = true })
+            vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+                group = group,
+                pattern = "*__virtual.html",
+                callback = function()
+                    vim.bo.buftype = "nofile"
+                end
+            })
         end
     }
 }
