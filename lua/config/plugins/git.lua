@@ -31,5 +31,13 @@ return {
         config = function()
             require("gitsigns").setup()
         end
-    }
+    },
+    {
+        "FabijanZulj/blame.nvim",
+        lazy = false,
+        config = function()
+            require('blame').setup {}
+            vim.keymap.set("n", "<space>gB", "<CMD>BlameToggle<CR>", { desc = "Git Blame" })
+        end,
+    },
 }
