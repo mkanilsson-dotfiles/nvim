@@ -15,7 +15,16 @@ return {
 
         require("telescope").setup({
             defaults = {
-                file_ignore_patterns = { "%__virtual.cs$", "%__virtual.html$" }
+                file_ignore_patterns = {
+                    "%__virtual.cs$",
+                    "%__virtual.html$",
+                    "node_modules",
+                    "vendor",
+                    "build",
+                    "bin/Debug",
+                    "obj/Debug",
+                    "%.git"
+                }
             },
             pickers = {
                 find_files = {
@@ -43,7 +52,13 @@ return {
 
         require("telescope").load_extension("ui-select")
 
-        vim.keymap.set("n", "<space><space>", require("telescope.builtin").find_files, { desc = "Find files" })
+        vim.keymap.set("n", "<space><space>", function()
+            require("telescope.builtin").find_files {
+                hidden = true,
+                no_ignore = true
+            }
+        end, { desc = "Find files" })
+
         vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Help" })
         vim.keymap.set("n", "<space>fm", require("telescope.builtin").man_pages, { desc = "Man page" })
         vim.keymap.set("n", "<space>fc", function()
