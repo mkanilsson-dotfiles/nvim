@@ -38,7 +38,7 @@ return {
             }
 
             dapui.setup()
-            require("nvim-dap-virtual-text").setup()
+            require("nvim-dap-virtual-text").setup {}
 
             dap.listeners.before.attach.dapui_config = function()
                 dapui.open()
