@@ -5,6 +5,7 @@ return {
             "nvim-lua/plenary.nvim",
             "sindrets/diffview.nvim",
             "nvim-telescope/telescope.nvim",
+            { "nvim-tree/nvim-web-devicons", opts = {} }
         },
         config = function()
             local neogit = require("neogit")
