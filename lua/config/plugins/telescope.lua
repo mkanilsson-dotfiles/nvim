@@ -3,9 +3,16 @@ return {
     tag = "0.1.8",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+        { "nvim-telescope/telescope-ui-select.nvim" }
     },
     config = function()
+        local t = require("telescope.themes").get_ivy {
+            layout_config = {
+                height = 15
+            }
+        }
+
         require("telescope").setup({
             defaults = {
                 file_ignore_patterns = { "%__virtual.cs$", "%__virtual.html$" }
@@ -26,8 +33,15 @@ return {
                 live_grep = {
                     theme = "ivy"
                 },
+            },
+            extensions = {
+                ["ui-select"] = {
+                    t
+                }
             }
         })
+
+        require("telescope").load_extension("ui-select")
 
         vim.keymap.set("n", "<space><space>", require("telescope.builtin").find_files, { desc = "Find files" })
         vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Help" })
