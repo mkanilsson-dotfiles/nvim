@@ -11,16 +11,14 @@ return {
             baleia_setup = true,
         }
 
-        vim.keymap.set("n", "<space>pc", function()
-            vim.cmd { cmd = "Compile" }
+        vim.keymap.set("n", "<space>pc", "<CMD>Compile<CR>", { desc = "Compile" })
 
-            local suffix = "*compilation*"
-
-            if vim.api.nvim_buf_get_name(0):sub(- #suffix) == suffix then
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "compilation",
+            callback = function()
                 vim.cmd.wincmd("J")
                 vim.api.nvim_win_set_height(0, 15)
             end
-
-        end, { desc = "Compile" })
+        })
     end
 }
