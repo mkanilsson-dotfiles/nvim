@@ -15,7 +15,8 @@ return {
                     "Cargo.toml",
                     "*.opam",
                     "dune-project",
-                    "*.sln"
+                    "*.sln",
+                    ".mvim"
                 },
             }
             require('telescope').load_extension('projects')
