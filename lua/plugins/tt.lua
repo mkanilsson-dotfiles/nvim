@@ -1,39 +1,41 @@
-local state = {
-    buf = nil,
-    win = nil
+local M = {
+    state = {
+        buf = nil,
+        win = nil
+    }
 }
 
-local toggle_terminal = function()
-    if state.win and vim.api.nvim_win_is_valid(state.win) then
-        vim.api.nvim_win_close(state.win, true)
-        state.win = nil
+M.toggle_terminal = function()
+    if M.state.win and vim.api.nvim_win_is_valid(M.state.win) then
+        vim.api.nvim_win_close(M.state.win, true)
+        M.state.win = nil
     else
-        if not state.buf or not vim.api.nvim_buf_is_valid(state.buf) then
-            state.buf = vim.api.nvim_create_buf(false, true)
+        if not M.state.buf or not vim.api.nvim_buf_is_valid(M.state.buf) then
+            M.state.buf = vim.api.nvim_create_buf(false, true)
         end
 
         vim.cmd.vnew();
-        state.win = vim.api.nvim_get_current_win()
+        M.state.win = vim.api.nvim_get_current_win()
         vim.cmd.wincmd("J")
-        vim.api.nvim_win_set_height(state.win, 15)
-        vim.api.nvim_win_set_buf(state.win, state.buf)
+        vim.api.nvim_win_set_height(M.state.win, 15)
+        vim.api.nvim_win_set_buf(M.state.win, M.state.buf)
 
-        if vim.bo[state.buf].buftype ~= "terminal" then
+        if vim.bo[M.state.buf].buftype ~= "terminal" then
             vim.cmd.terminal()
         end
 
         vim.api.nvim_set_option_value("number", false, {
-            win = state.win
+            win = M.state.win
         })
 
         vim.api.nvim_set_option_value("winhl", "Normal:Normal", {
-            win = state.win
+            win = M.state.win
         })
 
         vim.api.nvim_set_option_value("relativenumber", false, {
-            win = state.win
+            win = M.state.win
         })
     end
 end
 
-vim.keymap.set('n', '<space>ot', toggle_terminal, { noremap = true, silent = true, desc = "Toggle terminal" })
+return M

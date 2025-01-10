@@ -1,4 +1,6 @@
-local function get_hidden_buffers()
+local M = {}
+
+M._get_hidden_buffers = function()
     local hidden_buffers = {}
 
     local shown_windows = vim.api.nvim_list_wins()
@@ -19,8 +21,8 @@ local function get_hidden_buffers()
     return hidden_buffers
 end
 
-vim.keymap.set("n", "<space>bD", function()
-    local to_close = get_hidden_buffers()
+M.delete = function()
+    local to_close = M._get_hidden_buffers()
 
     if #to_close == 0 then
         print("No hidden buffers to delete")
@@ -41,4 +43,6 @@ vim.keymap.set("n", "<space>bD", function()
             end
         end
     end
-end, { desc = "Delete all other buffers" })
+end
+
+return M

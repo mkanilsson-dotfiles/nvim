@@ -52,13 +52,6 @@ return {
             dap.listeners.before.event_exited.dapui_config = function()
                 dapui.close()
             end
-
-            vim.keymap.set("n", "<space>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-            vim.keymap.set("n", "<space>dc", dap.continue, { desc = "Start/Continue" })
-            vim.keymap.set("n", "<space>di", dap.step_into, { desc = "Step into" })
-            vim.keymap.set("n", "<space>do", dap.step_over, { desc = "Step over" })
-            vim.keymap.set("n", "<space>dt", dap.step_out, { desc = "Step out" })
-            vim.keymap.set("n", "<space>ds", dap.close, { desc = "Stop" })
         end
     }
 }

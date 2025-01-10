@@ -22,9 +22,6 @@ return {
                     },
                 },
             }
-
-
-            vim.keymap.set("n", "<space>gg", neogit.open, { desc = "Git" })
         end
     },
     {
@@ -38,7 +35,6 @@ return {
         lazy = false,
         config = function()
             require('blame').setup {}
-            vim.keymap.set("n", "<space>gB", "<CMD>BlameToggle<CR>", { desc = "Git Blame" })
         end,
     },
 }

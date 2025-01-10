@@ -27,10 +27,6 @@ return {
             for _, name in ipairs(lsps) do
                 lsp[name].setup { capabilities = capabilities }
             end
-
-            vim.keymap.set("n", "<space>ch", function()
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            end, { desc = "Toggle inlay hints" })
         end
     }
 }

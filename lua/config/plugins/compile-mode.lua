@@ -11,8 +11,6 @@ return {
             baleia_setup = true,
         }
 
-        vim.keymap.set("n", "<space>pc", "<CMD>Compile<CR>", { desc = "Compile" })
-
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "compilation",
             callback = function()
