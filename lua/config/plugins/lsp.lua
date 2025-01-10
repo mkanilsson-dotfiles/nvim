@@ -17,9 +17,16 @@ return {
             local lsp = require("lspconfig")
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-            lsp.lua_ls.setup { capabilities = capabilities }
-            lsp.rust_analyzer.setup { capabilities = capabilities }
-            lsp.ts_ls.setup { capabilities = capabilities }
+            local lsps = {
+                "lua_ls",
+                "rust_analyzer",
+                "gleam",
+                "ts_ls"
+            }
+
+            for _, name in ipairs(lsps) do
+                lsp[name].setup { capabilities = capabilities }
+            end
 
             vim.keymap.set("n", "<space>ch", function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
