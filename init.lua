@@ -59,3 +59,6 @@ vim.keymap.set("n", "<space>bd", function()
         vim.api.nvim_buf_delete(bufnr, { force = true })
     end
 end, { desc = "Delete buffer" })
+
+
+vim.keymap.set("n", "<space>ctf", require("plugins.format").toggle, { desc = "Toggle format on save" })

@@ -1,4 +1,6 @@
-local state = true
+local M = {
+    enabled = true
+}
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -10,7 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.api.nvim_create_autocmd("BufWritePre", {
                 buffer = args.buf,
                 callback = function()
-                    if state then
+                    if M.enabled then
                         vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
                     end
                 end
@@ -19,18 +21,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 })
 
-vim.keymap.set("n", "<space>ctf", function()
-    state = not state
-end, { desc = "Toggle format on save" })
+M.toggle = function()
+    M.enabled = not M.enabled
+end
 
-vim.api.nvim_create_autocmd("DirChanged", {
-    group = vim.api.nvim_create_augroup("DirChange", { clear = true }),
-    pattern = "*",
-    callback = function(args)
-        if vim.loop.fs_stat(".disable-format-on-save") then
-            state = false
-        else
-            state = true
-        end
-    end,
-})
+return M
