@@ -21,6 +21,7 @@ set("n", "<space>cD", require("telescope.builtin").lsp_references, { desc = "Fin
 set("n", "<space>ci", require("telescope.builtin").lsp_implementations, {
     desc = "Find implementations"
 })
+vim.keymap.set("n", "<space>cs", require("plugins.switcher").switch, { desc = "Switch between mapping files" })
 
 -- Git
 set("n", "<space>gg", require("neogit").open, { desc = "Git" })
