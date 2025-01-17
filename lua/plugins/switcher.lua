@@ -26,10 +26,14 @@ end
 
 ---Opens filename if it isn't nil
 ---@param filename string|nil
+---@return boolean is_opened true if opened for edit
 M._try_edit = function(filename)
     if filename ~= nil then
         vim.cmd("edit " .. filename)
+        return true
     end
+
+    return false
 end
 
 ---@param filename string|nil Filename to switch between, current file if nil
@@ -38,12 +42,12 @@ M.switch = function(filename)
 
     -- Forward
     for old_extension, new_extension in pairs(M.mappings) do
-        M._try_edit(M._get_new_file(filename, old_extension, new_extension))
+        if M._try_edit(M._get_new_file(filename, old_extension, new_extension)) then return end
     end
 
     -- Backwards
     for new_extension, old_extension in pairs(M.mappings) do
-        M._try_edit(M._get_new_file(filename, old_extension, new_extension))
+        if M._try_edit(M._get_new_file(filename, old_extension, new_extension)) then return end
     end
 end
 
