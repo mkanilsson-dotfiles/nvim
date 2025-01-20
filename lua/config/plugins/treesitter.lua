@@ -28,6 +28,7 @@ return {
                     "vim",
                     "vimdoc",
                     "zig",
+                    "lalrpop"
                 },
                 ignore_install = {},
                 modules = {},
