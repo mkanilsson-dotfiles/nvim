@@ -21,6 +21,7 @@ return {
                     "node_modules",
                     "vendor",
                     "build",
+                    "target",
                     "bin/Debug",
                     "obj/Debug",
                     "%.git"
