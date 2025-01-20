@@ -27,6 +27,24 @@ return {
             for _, name in ipairs(lsps) do
                 lsp[name].setup { capabilities = capabilities }
             end
+
+            lsp.emmet_language_server.setup {
+                filetypes = {
+                    "css",
+                    "eruby",
+                    "html",
+                    "htmldjango",
+                    "javascriptreact",
+                    "less",
+                    "pug",
+                    "sass",
+                    "scss",
+                    "typescriptreact",
+                    "htmlangular",
+                    "razor",
+                    "cshtml"
+                }
+            }
         end
     }
 }
