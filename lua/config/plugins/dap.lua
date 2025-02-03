@@ -37,6 +37,8 @@ return {
                 },
             }
 
+            vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = 'WarningMsg', linehl = '', numhl = '' })
+
             dapui.setup()
             require("nvim-dap-virtual-text").setup {}
 
