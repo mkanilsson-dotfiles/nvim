@@ -17,7 +17,7 @@ local utils = require("utils")
 ---@param new_extension string Extension to use
 ---@return string|nil filename if current extension matches old_extension
 M._get_new_file = function(filename, old_extension, new_extension)
-    if utils.ends_width(filename, old_extension) then
+    if utils.ends_with(filename, old_extension) then
         return string.sub(filename, 0, #filename - #old_extension) .. new_extension
     end
 
