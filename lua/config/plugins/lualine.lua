@@ -16,7 +16,12 @@ local function buffername()
     local cwd = vim.fn.getcwd()
 
     if utils.starts_with(buffer_name, cwd) then
-        return string.sub(buffer_name, #cwd + 2)
+        local stripped = string.sub(buffer_name, #cwd + 2)
+        if stripped == "" then
+            return cwd
+        end
+
+        return stripped
     end
 
     return buffer_name
