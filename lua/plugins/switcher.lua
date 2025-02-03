@@ -28,7 +28,7 @@ end
 ---@param filename string|nil
 ---@return boolean is_opened true if opened for edit
 M._try_edit = function(filename)
-    if filename ~= nil then
+    if filename ~= nil and vim.loop.fs_stat(filename) then
         vim.cmd("edit " .. filename)
         return true
     end
