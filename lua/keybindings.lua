@@ -22,6 +22,7 @@ set("n", "<space>ci", require("telescope.builtin").lsp_implementations, {
     desc = "Find implementations"
 })
 vim.keymap.set("n", "<space>cs", require("plugins.switcher").switch, { desc = "Switch between mapping files" })
+vim.keymap.set("n", "<space>ce", vim.diagnostic.open_float, { desc = "Show error" })
 
 -- Git
 set("n", "<space>gg", require("neogit").open, { desc = "Git" })
@@ -75,6 +76,14 @@ set("n", "<space>di", require("dap").step_into, { desc = "Step into" })
 set("n", "<space>do", require("dap").step_over, { desc = "Step over" })
 set("n", "<space>dt", require("dap").step_out, { desc = "Step out" })
 set("n", "<space>ds", require("dap").close, { desc = "Stop" })
+
+-- Diagnostics/Errors
+set("n", "<space>en", function()
+    vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Next error" })
+set("n", "<space>ep", function()
+    vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Previous error" })
 
 -- QoL
 set({ "n", "v" }, "j", "gj")
