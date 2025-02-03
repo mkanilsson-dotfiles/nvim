@@ -21,7 +21,8 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gleam",
-                "ts_ls"
+                "ts_ls",
+                "zls"
             }
 
             for _, name in ipairs(lsps) do
