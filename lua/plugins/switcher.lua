@@ -6,6 +6,7 @@ local M = {
     mappings = {
         [".razor"] = ".razor.cs",
         [".cpp"] = ".h",
+        [".en.json"] = ".sv.json",
     }
 }
 
