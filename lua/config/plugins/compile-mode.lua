@@ -1,6 +1,6 @@
 return {
     "ej-shafran/compile-mode.nvim",
-    tag = "v5.4",
+    branch = "nightly",
     dependencies = {
         "nvim-lua/plenary.nvim",
         { "m00qek/baleia.nvim", tag = "v1.3.0" },
