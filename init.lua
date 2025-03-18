@@ -33,7 +33,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.filetype.add({
     extension = {
         lalrpop = "lalrpop",
-        json = "jsonc",
         sl = "sl"
     }
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "www/Recipes/*.txt",
+    callback = function()
+        vim.bo.filetype = "json"
+    end,
 })
