@@ -8,6 +8,7 @@ return {
         dependencies = {
             {
                 "tris203/rzls.nvim",
+                branch = "pullDiags",
                 config = function()
                     require("rzls").setup({
                         on_attach = function() end,
@@ -72,6 +73,14 @@ return {
                 pattern = "*__virtual.html",
                 callback = function()
                     vim.bo.buftype = "nofile"
+                end
+            })
+
+            vim.api.nvim_create_autocmd("BufWriteCmd", {
+                group = vim.api.nvim_create_augroup("DontSave__virtualFiles", { clear = true }),
+                pattern = "*__virtual.html",
+                callback = function()
+                    vim.cmd('echom "Skipping save for __virtual.html file"')
                 end
             })
         end
