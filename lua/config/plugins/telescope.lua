@@ -24,7 +24,9 @@ return {
                     "target",
                     "bin/Debug",
                     "obj/Debug",
-                    "%.git"
+                    "%.git",
+                    ".zig-cache",
+                    "zig-out"
                 },
                 mappings = {
                     i = {
