@@ -5,5 +5,6 @@ return {
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
+        enabled = false
     }
 }
