@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 buffer = args.buf,
                 callback = function()
                     if M.enabled and vim.bo[args.buf].filetype ~= "razor" then
-                        vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                        vim.lsp.buf.format({ bufnr = args.buf })
                     end
                 end
             })
