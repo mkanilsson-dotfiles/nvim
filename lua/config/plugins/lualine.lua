@@ -40,7 +40,7 @@ return {
                 },
                 sections = {
                     lualine_a = { "mode" },
-                    lualine_b = { "branch", "diff", "diagnostics" },
+                    lualine_b = { "diff", "diagnostics" },
                     lualine_c = { buffername },
                     lualine_x = { "encoding", "fileformat" },
                     lualine_y = { "filetype", "location" },
