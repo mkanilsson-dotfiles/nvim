@@ -85,6 +85,12 @@ set("n", "<space>ep", function()
     vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Previous error" })
 
+set("n", "<space>el", function()
+    require("telescope.builtin").diagnostics {
+        severity = vim.diagnostic.severity.ERROR
+    }
+end, { desc = "List errors" })
+
 -- QoL
 set({ "n", "v" }, "j", "gj")
 set({ "n", "v" }, "k", "gk")
