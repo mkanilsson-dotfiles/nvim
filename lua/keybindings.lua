@@ -116,3 +116,7 @@ end, { desc = "Find buffer" })
 set("n", "<space>.", function()
     vim.cmd { cmd = "Oil", args = { vim.fn.expand("%:p:h") } }
 end, { desc = "Open current directory" })
+
+set("n", "<A-x>", function()
+    require("telescope.builtin").commands {}
+end, { desc = "Mmmmm emacs" })
