@@ -50,6 +50,12 @@ return {
                 live_grep = {
                     theme = "ivy"
                 },
+                commands = {
+                    theme = "ivy"
+                },
+                diagnostics = {
+                    theme = "ivy"
+                },
             },
             extensions = {
                 ["ui-select"] = {
