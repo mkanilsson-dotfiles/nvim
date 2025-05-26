@@ -8,7 +8,6 @@ return {
         dependencies = {
             {
                 "tris203/rzls.nvim",
-                branch = "pullDiags",
                 config = function()
                     require("rzls").setup({
                         on_attach = function() end,
@@ -42,7 +41,7 @@ return {
                     ),
                 },
                 config = {
-                    -- capabilities = require("blink.cmp").get_lsp_capabilities(),
+                    capabilities = require("blink.cmp").get_lsp_capabilities(),
                     handlers = require 'rzls.roslyn_handlers',
                     settings = {
                         ["csharp|inlay_hints"] = {
