@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 ---@class MvimOptions
 ---@field format_on_save boolean?
 ---@field debuggers MvimDebugger?
@@ -13,8 +15,10 @@
 
 local M = {
     ---@type MvimOptions
-    options = {}
+    options = {},
+    current_path = ""
 }
+
 
 ---@return MvimOptions: Parsed options
 M._parse_file = function()
@@ -54,11 +58,11 @@ M._configure_cs_debuggers = function(opts)
             request = "launch",
             preLaunchTask = "build",
             cwd = function()
-                return vim.fn.getcwd() .. (instance.cwd or "")
+                return vim.fn.getcwd() .. M._add_path_prefix(instance.cwd or "")
             end,
             program = function()
                 if instance.dll then
-                    return vim.fn.getcwd() .. instance.dll
+                    return vim.fn.getcwd() .. M._add_path_prefix(instance.dll)
                 end
 
                 return vim.fn.input("Path to dll: ", vim.fn.getcwd(), "file")
@@ -93,10 +97,16 @@ M.setup = function()
 end
 
 M.reload = function()
+    local new_path = vim.fn.getcwd();
+    local is_new_project = M.current_path ~= new_path
+    M.current_path = new_path
+
     M._parse_file()
 
-    local format = require("plugins.format")
-    format.enabled = M.options.format_on_save
+    if is_new_project then
+        local format = require("plugins.format")
+        format.enabled = M.options.format_on_save
+    end
 
     for lang, configurations in pairs(M.options.debuggers) do
         if lang == "cs" then
@@ -106,7 +116,19 @@ M.reload = function()
         end
     end
 
-    vim.notify("mvim loaded", vim.log.levels.INFO)
+    M._log("loaded")
+end
+
+M._log = function(message)
+    vim.notify("[MVIM] " .. message, vim.log.levels.INFO)
+end
+
+M._add_path_prefix = function(path)
+    if not utils.starts_with(path, "/") then
+        return path .. "/"
+    end
+
+    return path
 end
 
 return M
