@@ -1,8 +1,5 @@
 return {
     {
-        "jlcrochet/vim-razor"
-    },
-    {
         "seblyng/roslyn.nvim",
         ft = { "cs", "razor" },
         dependencies = {
@@ -10,6 +7,7 @@ return {
                 -- By loading as a dependencies, we ensure that we are available to set
                 -- the handlers for Roslyn.
                 "tris203/rzls.nvim",
+                dir = "~/Documents/dev/others/rzls.nvim/",
                 config = true,
             },
         },
@@ -20,11 +18,11 @@ return {
             local cmd = {
                 "roslyn",
                 "--stdio",
-                "--logLevel=Information",
+                "--logLevel=Error",
                 "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
                 "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
                 "--razorDesignTimePath=" ..
-                    vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
+                vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
                 "--extension",
                 vim.fs.joinpath(rzls_path, "RazorExtension", "Microsoft.VisualStudioCode.RazorExtension.dll"),
             }
