@@ -11,7 +11,7 @@ set("n", "<space>ca", vim.lsp.buf.code_action, {
     desc = "Code action"
 })
 set("n", "<space>cr", vim.lsp.buf.rename, { desc = "Rename" })
-set("n", "<space>cf", vim.lsp.buf.format, { desc = "format" })
+set("n", "<space>cf", require("conform").format, { desc = "format" })
 set("n", "<space>ch", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle inlay hints" })

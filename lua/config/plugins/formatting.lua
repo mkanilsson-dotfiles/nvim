@@ -4,12 +4,18 @@ return {
         config = function()
             require("conform").setup({
                 formatters_by_ft = {
-                    lua = { "stylua" },
                     python = { "isort", "black" },
                     rust = { "rustfmt", lsp_format = "fallback" },
                     javascript = { "prettier" },
-                    ['*'] = { "lsp" }
+                    typescript = { "prettier" },
+                    javascriptreact = { "prettier" },
+                    typescriptreact = { "prettier" },
                 },
+                default_format_opts = {
+                    lsp_format = "fallback"
+                },
+                notify_on_error = true,
+                notify_no_formatters = true
             })
         end
     }
