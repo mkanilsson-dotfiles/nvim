@@ -15,7 +15,7 @@ return {
                 args = { "--interpreter=vscode" }
             }
 
-            dap.configurations.cs = {
+            local razor_and_cs_default_config = {
                 {
                     type = "coreclr",
                     name = "Launch - netcoredbg",
@@ -36,6 +36,9 @@ return {
                     }
                 },
             }
+
+            dap.configurations.cs = razor_and_cs_default_config
+            dap.configurations.razor = razor_and_cs_default_config
 
             vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = 'WarningMsg', linehl = '', numhl = '' })
 

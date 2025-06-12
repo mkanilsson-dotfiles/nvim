@@ -74,6 +74,7 @@ M._configure_cs_debuggers = function(opts)
     end
 
     dap.configurations.cs = configurations
+    dap.configurations.razor = configurations
 end
 
 M.setup = function()

@@ -76,6 +76,7 @@ set("n", "<space>di", require("dap").step_into, { desc = "Step into" })
 set("n", "<space>do", require("dap").step_over, { desc = "Step over" })
 set("n", "<space>dt", require("dap").step_out, { desc = "Step out" })
 set("n", "<space>ds", require("dap").close, { desc = "Stop" })
+set("n", "<space>de", require("dapui").eval, { desc = "Evalute" })
 
 -- Diagnostics/Errors
 set("n", "<space>en", function()
