@@ -2,7 +2,7 @@ if exists("b:current_syntax")
     finish
 endif
 
-syntax keyword sclKeyword if else proc ret let import struct extern use
+syntax keyword sclKeyword if else proc ret let import struct extern use switch union defer package
 syntax match sclNumber "\<[0-9]+\>"
 syntax match sclOperator "+"
 syntax match sclOperator "-"
@@ -17,7 +17,7 @@ syntax match sclOperator "<="
 syntax match sclOperator ">"
 syntax match sclOperator "<"
 syntax match sclOperator "="
-syntax keyword sclType i32 u32 i64 u64 bool void string
+syntax keyword sclType i32 u32 i64 u64 bool void string any
 syntax match sclCustomType "\<[_A-Z][_a-zA-Z0-9]*\>"
 syntax match sclVariable "\<[_a-z][_a-zA-Z0-9]*\>"
 syntax keyword sclBool true false
@@ -34,7 +34,7 @@ syntax region sclString start=+"+ skip=+\\"+ end=+"+ contains=sclEscape
 syntax match sclEscape "\\[nrt\\\"]" contained
 
 highlight link sclKeyword Keyword
-highlight link sclNumber Number
+highlight link sclNumber Constant
 highlight link sclOperator PreProc
 highlight link sclType Type
 highlight link sclCustomType Type
