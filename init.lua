@@ -37,7 +37,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.filetype.add({
     extension = {
         lalrpop = "lalrpop",
-        scl = "scl"
+        scl = "scl",
+        qbe = "qbe",
+        ssa = "qbe",
     }
 })
 
