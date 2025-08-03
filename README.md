@@ -11,7 +11,7 @@ example
 ```json
 {
     "format_on_save": false,
-    "debugger": {
+    "debuggers": {
         "cs": [
             {
                 "name": "Client",
