@@ -3,6 +3,14 @@ return {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function()
+            require("nvim-treesitter.parsers").get_parser_configs().qbe = {
+                install_info = {
+                    url = "~/Documents/dev/rust/tree-sitter-qbe",
+                    files = { "src/parser.c" },
+                },
+                filetype = "qbe"
+            }
+
             require 'nvim-treesitter.configs'.setup {
                 ensure_installed = {
                     "asm",
@@ -28,7 +36,8 @@ return {
                     "vim",
                     "vimdoc",
                     "zig",
-                    "lalrpop"
+                    "lalrpop",
+                    "qbe"
                 },
                 ignore_install = {},
                 modules = {},
@@ -50,6 +59,10 @@ return {
                     updatetime = 25
                 }
             }
+
         end
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
     }
 }

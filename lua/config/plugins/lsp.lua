@@ -15,7 +15,19 @@ return {
         },
         config = function()
             local lsp = require("lspconfig")
+            local configs = require("lspconfig.configs")
             local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+            configs.qbels = {
+                default_config = {
+                    cmd = { vim.fn.expand("~/Documents/dev/rust/qbels/target/debug/qbels") },
+                    filetypes = { "qbe" },
+                    root_dir = lsp.util.root_pattern(".git"),
+                    settings = {}
+                }
+            }
+
+            lsp.qbels.setup {}
 
             local lsps = {
                 "lua_ls",
