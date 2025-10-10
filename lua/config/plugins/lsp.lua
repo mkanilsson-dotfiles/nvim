@@ -30,7 +30,8 @@ return {
                 "gleam",
                 "ts_ls",
                 "zls",
-                "marksman"
+                "marksman",
+                "html"
             }
 
             for _, name in ipairs(lsps) do
