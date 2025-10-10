@@ -14,20 +14,15 @@ return {
             },
         },
         config = function()
-            local lsp = require("lspconfig")
-            local configs = require("lspconfig.configs")
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-            configs.qbels = {
-                default_config = {
-                    cmd = { vim.fn.expand("~/Documents/dev/rust/qbels/target/debug/qbels") },
-                    filetypes = { "qbe" },
-                    root_dir = lsp.util.root_pattern(".git"),
-                    settings = {}
-                }
-            }
-
-            lsp.qbels.setup {}
+            vim.lsp.config("qbels", {
+                cmd = { vim.fn.expand("~/Documents/dev/rust/qbels/target/debug/qbels") },
+                filetypes = { "qbe" },
+                root_dir = vim.fs.root(0, { ".git" }),
+                settings = {}
+            })
+            vim.lsp.enable("qbels")
 
             local lsps = {
                 "lua_ls",
@@ -39,10 +34,13 @@ return {
             }
 
             for _, name in ipairs(lsps) do
-                lsp[name].setup { capabilities = capabilities }
+                vim.lsp.config(name, {
+                    capabilities = capabilities
+                })
+                vim.lsp.enable(name)
             end
 
-            lsp.emmet_language_server.setup {
+            vim.lsp.config("emmet_language_server", {
                 filetypes = {
                     "css",
                     "eruby",
@@ -58,7 +56,14 @@ return {
                     "razor",
                     "cshtml"
                 }
-            }
+            })
+            vim.lsp.enable("emmet_language_server")
+
+            vim.lsp.config("clangd", {
+                cmd = { "/home/marcus/Documents/dev/others/serenity/Toolchain/Local/clang/bin/clangd" },
+                capabilities = capabilities,
+            })
+            vim.lsp.enable("clangd")
         end
     }
 }
