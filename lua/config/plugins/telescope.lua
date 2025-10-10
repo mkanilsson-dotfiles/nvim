@@ -66,10 +66,14 @@ return {
             extensions = {
                 ["ui-select"] = {
                     t
+                },
+                ["todo-comments"] = {
+                    t
                 }
             }
         })
 
         require("telescope").load_extension("ui-select")
+        require("telescope").load_extension("todo-comments")
     end
 }
