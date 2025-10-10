@@ -10,6 +10,7 @@ return {
                     typescript = { "prettier" },
                     javascriptreact = { "prettier" },
                     typescriptreact = { "prettier" },
+                    cpp = { "clang-format" }
                 },
                 default_format_opts = {
                     lsp_format = "fallback"
