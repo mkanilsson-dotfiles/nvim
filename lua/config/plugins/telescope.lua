@@ -20,13 +20,17 @@ return {
                     "%__virtual.html$",
                     "node_modules",
                     "vendor",
-                    "build",
                     "target",
                     "bin/Debug",
                     "obj/Debug",
+                    "bin/Release",
+                    "obj/Release",
                     "%.git",
                     ".zig-cache",
-                    "zig-out"
+                    "zig-out",
+                    "Build/x86_64",
+                    "Build/x86_64clang",
+                    "Build/lagom",
                 },
                 mappings = {
                     i = {
