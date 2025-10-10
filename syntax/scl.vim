@@ -2,7 +2,7 @@ if exists("b:current_syntax")
     finish
 endif
 
-syntax keyword sclKeyword if else proc ret let import struct extern use switch union defer package as while impl this for virtual owned borrowed trait enum
+syntax keyword sclKeyword if else proc ret let import struct extern use switch union defer package as while impl this for virtual owned borrowed interface enum
 syntax match sclNumber "\<[0-9]+\>"
 syntax match sclOperator "+"
 syntax match sclOperator "-"
