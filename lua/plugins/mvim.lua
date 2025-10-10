@@ -2,6 +2,7 @@ local utils = require("utils")
 
 ---@class MvimOptions
 ---@field format_on_save boolean?
+---@field copilot boolean?
 ---@field debuggers MvimDebugger?
 
 ---@class MvimDebugger
@@ -11,7 +12,7 @@ local utils = require("utils")
 ---@field cwd string?
 ---@field dll string?
 ---@field name string?
-
+---@field prelanch_cmd string[]?
 
 local M = {
     ---@type MvimOptions
@@ -38,6 +39,10 @@ end
 M._populate_defaults = function(opts)
     if opts.format_on_save == nil then
         opts.format_on_save = true
+    end
+
+    if opts.copilot == nil then
+        opts.copilot = false
     end
 
     opts.debuggers = opts.debuggers or {}
@@ -107,6 +112,12 @@ M.reload = function()
     if is_new_project then
         local format = require("plugins.format")
         format.enabled = M.options.format_on_save
+
+        if M.options.copilot then
+            vim.cmd([[Copilot enable]])
+        else
+            vim.cmd([[Copilot disable]])
+        end
     end
 
     for lang, configurations in pairs(M.options.debuggers) do
