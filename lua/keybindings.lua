@@ -23,6 +23,10 @@ set("n", "<space>ci", require("telescope.builtin").lsp_implementations, {
 })
 vim.keymap.set("n", "<space>cs", require("plugins.switcher").switch, { desc = "Switch between mapping files" })
 vim.keymap.set("n", "<space>ce", vim.diagnostic.open_float, { desc = "Show error" })
+set("n", "<space>cd", require("telescope.builtin").diagnostics, { desc = "List diagnostics" })
+vim.keymap.set("n", "<space>ccn", require("todo-comments").jump_next, { desc = "Jump to next" })
+vim.keymap.set("n", "<space>ccp", require("todo-comments").jump_prev, { desc = "Jump to previous" })
+vim.keymap.set("n", "<space>cca", "<cmd>Telescope todo-comments<CR>", { desc = "Telescope" })
 
 -- Git
 set("n", "<space>gg", require("neogit").open, { desc = "Git" })
