@@ -12,10 +12,11 @@ vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.tabstop = 4
 vim.opt.iskeyword:remove("_")
 
 vim.g.markdown_fenced_languages = {
-    'scl'
+    'scl',
 }
 
 vim.api.nvim_create_autocmd("TextYankPost", {
