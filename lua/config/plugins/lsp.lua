@@ -12,6 +12,7 @@ return {
                     },
                 },
             },
+            "mfussenegger/nvim-jdtls",
         },
         config = function()
             local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -29,9 +30,12 @@ return {
                 "rust_analyzer",
                 "gleam",
                 "ts_ls",
-                "zls",
                 "marksman",
-                "html"
+                "html",
+                "gopls",
+                "kotlin_language_server",
+                "jdtls",
+                "elp"
             }
 
             for _, name in ipairs(lsps) do
@@ -65,6 +69,15 @@ return {
                 capabilities = capabilities,
             })
             vim.lsp.enable("clangd")
+
+            vim.lsp.config("zls", {
+                capabilities = capabilities,
+                root_markers = {
+                    ".git",
+                    ".mvim"
+                }
+            })
+            vim.lsp.enable("zls")
         end
     }
 }
