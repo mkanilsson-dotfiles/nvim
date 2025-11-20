@@ -31,6 +31,9 @@ return {
                     "Build/x86_64",
                     "Build/x86_64clang",
                     "Build/lagom",
+                    "build/",
+                    ".gradle",
+                    "bin/"
                 },
                 mappings = {
                     i = {
