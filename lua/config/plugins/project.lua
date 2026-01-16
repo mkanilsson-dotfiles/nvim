@@ -9,15 +9,9 @@ return {
                     ".hg",
                     ".bzr",
                     ".svn",
-                    "Makefile",
-                    "package.json",
-                    "go.mod",
-                    "Cargo.toml",
-                    "*.opam",
-                    "dune-project",
-                    "*.sln",
-                    ".mvim"
+                    ".mvim",
                 },
+                detection_methods = { "patterns" },
             }
             require('telescope').load_extension('projects')
         end
