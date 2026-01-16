@@ -2,6 +2,7 @@ local utils = require("utils")
 
 ---@class MvimOptions
 ---@field format_on_save boolean?
+---@field format_on_save_ignored_directories string[]?
 ---@field copilot boolean?
 ---@field debuggers MvimDebugger?
 
@@ -13,6 +14,7 @@ local utils = require("utils")
 ---@field dll string?
 ---@field name string?
 ---@field prelanch_cmd string[]?
+---@field env { name: string, value: string }[]?
 
 local M = {
     ---@type MvimOptions
@@ -39,6 +41,10 @@ end
 M._populate_defaults = function(opts)
     if opts.format_on_save == nil then
         opts.format_on_save = true
+    end
+
+    if opts.format_on_save_ignored_directories == nil then
+        opts.format_on_save_ignored_directories = {}
     end
 
     if opts.copilot == nil then
@@ -112,6 +118,7 @@ M.reload = function()
     if is_new_project then
         local format = require("plugins.format")
         format.enabled = M.options.format_on_save
+        format.set_ignored_directories(M.options.format_on_save_ignored_directories)
 
         if M.options.copilot then
             vim.cmd([[Copilot enable]])
