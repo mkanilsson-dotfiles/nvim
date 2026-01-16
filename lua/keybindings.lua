@@ -10,7 +10,22 @@ set("v", "<space>x", ":lua<CR>", { desc = "Execute lua" })
 set("n", "<space>ca", vim.lsp.buf.code_action, {
     desc = "Code action"
 })
-set("n", "<space>cr", vim.lsp.buf.rename, { desc = "Rename" })
+
+local ignore_underscore = function(f)
+    return function()
+        local old_iskeyword = vim.opt.iskeyword:get()
+        vim.opt.iskeyword:append('_')
+
+        f()
+
+        vim.defer_fn(function()
+            vim.opt.iskeyword = old_iskeyword
+        end, 100)
+    end
+end
+
+set("n", "<space>cr", ignore_underscore(vim.lsp.buf.rename), { desc = "Rename" })
+
 set("n", "<space>cf", require("conform").format, { desc = "format" })
 set("n", "<space>ch", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -80,7 +95,7 @@ set("n", "<space>di", require("dap").step_into, { desc = "Step into" })
 set("n", "<space>do", require("dap").step_over, { desc = "Step over" })
 set("n", "<space>dt", require("dap").step_out, { desc = "Step out" })
 set("n", "<space>ds", require("dap").close, { desc = "Stop" })
-set("n", "<space>de", require("dapui").eval, { desc = "Evalute" })
+set("n", "<space>de", ignore_underscore(require("dapui").eval), { desc = "Evalute" })
 
 -- Diagnostics/Errors
 set("n", "<space>en", function()
