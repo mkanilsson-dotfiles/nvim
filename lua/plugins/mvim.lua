@@ -63,6 +63,9 @@ M._configure_cs_debuggers = function(opts)
     local configurations = {}
 
     for i, instance in ipairs(opts) do
+        local allEnvs = instance.env or {}
+        allEnvs["ASPNETCORE_ENVIRONMENT"] = "Development"
+
         table.insert(configurations, {
             type = "coreclr",
             name = instance.name or ("Launch - netcoredbg " .. i),
@@ -78,9 +81,7 @@ M._configure_cs_debuggers = function(opts)
 
                 return vim.fn.input("Path to dll: ", vim.fn.getcwd(), "file")
             end,
-            env = {
-                ASPNETCORE_ENVIRONMENT = "Development"
-            }
+            env = allEnvs
         })
     end
 
