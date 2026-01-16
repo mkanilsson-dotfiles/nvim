@@ -15,7 +15,7 @@ return {
             "mfussenegger/nvim-jdtls",
         },
         config = function()
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
 
             vim.lsp.config("qbels", {
                 cmd = { vim.fn.expand("~/Documents/dev/rust/qbels/target/debug/qbels") },
@@ -24,6 +24,14 @@ return {
                 settings = {}
             })
             vim.lsp.enable("qbels")
+
+            vim.lsp.config("rosetta-lsp", {
+                cmd = { vim.fn.expand("~/Documents/dev/zig/rosetta/run_lsp.sh") },
+                filetypes = { "rosetta" },
+                root_dir = vim.fn.expand("~/Documents/dev/zig/rosetta"),
+                settings = {}
+            })
+            vim.lsp.enable("rosetta-lsp")
 
             local lsps = {
                 "lua_ls",
@@ -35,12 +43,15 @@ return {
                 "gopls",
                 "kotlin_language_server",
                 "jdtls",
-                "elp"
+                "elp",
+                "zls",
+                "eslint",
+                "tinymist"
             }
 
             for _, name in ipairs(lsps) do
                 vim.lsp.config(name, {
-                    capabilities = capabilities
+                    capabilities = capabilities,
                 })
                 vim.lsp.enable(name)
             end
@@ -59,7 +70,7 @@ return {
                     "typescriptreact",
                     "htmlangular",
                     "razor",
-                    "cshtml"
+                    "cshtml",
                 }
             })
             vim.lsp.enable("emmet_language_server")
@@ -70,14 +81,35 @@ return {
             })
             vim.lsp.enable("clangd")
 
-            vim.lsp.config("zls", {
+            vim.lsp.config("roslyn", {
+                settings = {
+                    ["csharp|inlay_hints"] = {
+                        csharp_enable_inlay_hints_for_implicit_object_creation = true,
+                        csharp_enable_inlay_hints_for_implicit_variable_types = true,
+
+                        csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+                        csharp_enable_inlay_hints_for_types = true,
+                        dotnet_enable_inlay_hints_for_indexer_parameters = true,
+                        dotnet_enable_inlay_hints_for_literal_parameters = true,
+                        dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+                        dotnet_enable_inlay_hints_for_other_parameters = true,
+                        dotnet_enable_inlay_hints_for_parameters = true,
+                        dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+                        dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+                        dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+                    },
+                    ["csharp|code_lens"] = {
+                        dotnet_enable_references_code_lens = true,
+                    },
+                },
                 capabilities = capabilities,
-                root_markers = {
-                    ".git",
-                    ".mvim"
-                }
             })
-            vim.lsp.enable("zls")
+            vim.lsp.enable("roslyn")
+
+            vim.lsp.config("sourcekit", {
+                filetypes = { "swift", "objc", "objcpp" }
+            })
+            vim.lsp.enable("sourcekit")
         end
     }
 }
