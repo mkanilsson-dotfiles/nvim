@@ -14,9 +14,11 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.tabstop = 4
 vim.opt.iskeyword:remove("_")
+vim.o.autochdir = false
 
 vim.g.markdown_fenced_languages = {
     'scl',
+    'rosetta',
 }
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -41,6 +43,7 @@ vim.filetype.add({
         scl = "scl",
         qbe = "qbe",
         ssa = "qbe",
+        rosetta = "rosetta",
     }
 })
 
