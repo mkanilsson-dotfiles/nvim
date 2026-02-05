@@ -140,3 +140,7 @@ end, { desc = "Open current directory" })
 set("n", "<A-x>", function()
     require("telescope.builtin").commands {}
 end, { desc = "Mmmmm emacs" })
+
+-- HTTP
+set("n", "<space>hr", "<CMD>Rest run<CR>", { desc = "Run" })
+set("n", "<space>ho", "<CMD>Rest open<CR>", { desc = "Open" })
