@@ -1,6 +1,7 @@
 return {
     {
         "NeogitOrg/neogit",
+        commit = "2cc5daffb838f718174d2c07f2ca0c39149bb2c1",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
