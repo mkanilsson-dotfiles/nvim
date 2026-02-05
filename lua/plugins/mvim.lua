@@ -5,6 +5,7 @@ local utils = require("utils")
 ---@field format_on_save_ignored_directories string[]?
 ---@field copilot boolean?
 ---@field debuggers MvimDebugger?
+---@field lsp table<string, any>?
 
 ---@class MvimDebugger
 ---@field cs MvimCsDebugger[]?
@@ -21,7 +22,6 @@ local M = {
     options = {},
     current_path = ""
 }
-
 
 ---@return MvimOptions: Parsed options
 M._parse_file = function()
@@ -52,6 +52,15 @@ M._populate_defaults = function(opts)
     end
 
     opts.debuggers = opts.debuggers or {}
+    opts.lsp = opts.lsp or {}
+
+    if opts.dos == nil then
+        opts.dos = false
+    end
+
+    if opts.eol == nil then
+        opts.eol = false
+    end
 
     M.options = opts
 end
@@ -134,6 +143,11 @@ M.reload = function()
         else
             error("mvim: Unknown debugger language \"" .. lang .. "\"")
         end
+    end
+
+    for lsp, config in pairs(M.options.lsp) do
+        vim.lsp.config(lsp, config)
+        vim.lsp.enable(lsp)
     end
 
     M._log("loaded")

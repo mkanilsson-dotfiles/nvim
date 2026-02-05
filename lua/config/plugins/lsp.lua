@@ -46,7 +46,9 @@ return {
                 "elp",
                 "zls",
                 "eslint",
-                "tinymist"
+                "tinymist",
+                "clangd",
+                "neocmake"
             }
 
             for _, name in ipairs(lsps) do
@@ -74,12 +76,6 @@ return {
                 }
             })
             vim.lsp.enable("emmet_language_server")
-
-            vim.lsp.config("clangd", {
-                cmd = { "/home/marcus/Documents/dev/others/serenity/Toolchain/Local/clang/bin/clangd" },
-                capabilities = capabilities,
-            })
-            vim.lsp.enable("clangd")
 
             vim.lsp.config("roslyn", {
                 settings = {
