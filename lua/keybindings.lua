@@ -1,6 +1,8 @@
 ---@diagnostic disable: missing-fields
 local set = vim.keymap.set
 
+local utils = require("utils")
+
 -- Lua
 set("n", "<space>ls", "<cmd>source %<CR>")
 set("n", "<space>x", ":.lua<CR>", { desc = "Execute lua" })
@@ -134,7 +136,14 @@ set("n", "<space>,", function()
 end, { desc = "Find buffer" })
 
 set("n", "<space>.", function()
-    vim.cmd { cmd = "Oil", args = { vim.fn.expand("%:p:h") } }
+    local path = vim.fn.expand("%:p:h")
+
+    local wasm_tools_prefix = "wasm-tools://"
+    if utils.starts_with(path, wasm_tools_prefix) then
+        path = string.sub(path, #wasm_tools_prefix + 1)
+    end
+
+    vim.cmd { cmd = "Oil", args = { path } }
 end, { desc = "Open current directory" })
 
 set("n", "<A-x>", function()
