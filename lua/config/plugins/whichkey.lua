@@ -18,7 +18,8 @@ return {
                 { "<space>d",  group = "Debug" },
                 { "<space>e",  group = "Diagnostics" },
                 { "<space>cc", group = "Comments" },
-                { "<space>h",  group = "HTTP" }
+                { "<space>h",  group = "HTTP" },
+                { "<space>k",  group = "Copy" }
             })
         end
     }

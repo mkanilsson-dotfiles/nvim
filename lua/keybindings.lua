@@ -153,3 +153,7 @@ end, { desc = "Mmmmm emacs" })
 -- HTTP
 set("n", "<space>hr", "<CMD>Rest run<CR>", { desc = "Run" })
 set("n", "<space>ho", "<CMD>Rest open<CR>", { desc = "Open" })
+
+set("n", "<space>kp", function()
+    vim.fn.setreg('+', vim.fn.expand('%'))
+end, { desc = "Path" })
