@@ -16,7 +16,7 @@ syntax match rosettaParens "[][(){}]"
 syntax match rosettaDelimiter ","
 syntax match rosettaDelimiter ":"
 syntax match rosettaComment "#.*$"
-syntax match rosettaLabel "@\<[a-zA-Z_][a-zA-Z0-9_]*\>"
+syntax match rosettaLabel "@\<[\.a-zA-Z_][\.a-zA-Z0-9_]*\>"
 syntax match rosettaNumber "\<\d\+\>"
 
 syntax region rosettaString start=+"+ skip=+\\"+ end=+"+ contains=rosettaEscape

@@ -19,7 +19,8 @@ return {
                 { "<space>e",  group = "Diagnostics" },
                 { "<space>cc", group = "Comments" },
                 { "<space>h",  group = "HTTP" },
-                { "<space>k",  group = "Copy" }
+                { "<space>k",  group = "Copy" },
+                { "<space>a",  group = "AI" }
             })
         end
     }

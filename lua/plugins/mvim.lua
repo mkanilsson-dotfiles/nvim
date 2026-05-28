@@ -90,6 +90,28 @@ M._configure_cs_debuggers = function(opts)
 
                 return vim.fn.input("Path to dll: ", vim.fn.getcwd(), "file")
             end,
+            exceptionBreakpointFilters = {
+                {
+                    filter = "all",
+                    label = "All Exceptions",
+                    default = true -- Enable by default
+                },
+                {
+                    filter = "user-unhandled",
+                    label = "User-Unhandled Exceptions",
+                    default = true
+                }
+            },
+            exceptionOptions = {
+                pathMappings = {},
+                exceptionOptions = {
+                    {
+                        path = "",
+                        exceptionFilter = "all",
+                        state = "always"
+                    }
+                }
+            },
             env = allEnvs
         })
     end

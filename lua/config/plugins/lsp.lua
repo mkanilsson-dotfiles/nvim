@@ -72,12 +72,12 @@ return {
                     "typescriptreact",
                     "htmlangular",
                     "razor",
-                    "cshtml",
+                    "cshtml"
                 }
             })
             vim.lsp.enable("emmet_language_server")
 
-            vim.lsp.config("roslyn", {
+            vim.lsp.config("roslyn_ls", {
                 settings = {
                     ["csharp|inlay_hints"] = {
                         csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -97,8 +97,7 @@ return {
                     ["csharp|code_lens"] = {
                         dotnet_enable_references_code_lens = true,
                     },
-                },
-                capabilities = capabilities,
+                }
             })
             vim.lsp.enable("roslyn")
 
@@ -106,6 +105,11 @@ return {
                 filetypes = { "swift", "objc", "objcpp" }
             })
             vim.lsp.enable("sourcekit")
+
+            vim.lsp.config("c3_lsp", {
+                cmd = { "c3lsp", "-stdlib-path", "/usr/lib/c3c/lib", "-log-path", "/tmp/c3lsp.log", "-debug" }
+            })
+            vim.lsp.enable("c3_lsp")
         end
     }
 }

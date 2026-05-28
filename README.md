@@ -11,6 +11,7 @@ example
 ```json
 {
     "format_on_save": false,
+    "copilot": false, 
     "debuggers": {
         "cs": [
             {

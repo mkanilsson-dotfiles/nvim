@@ -1,8 +1,12 @@
 local utils = require("utils")
 
-local function add_prefix(path, is_wasm_tool)
+local function add_prefix(path, is_wasm_tool, modified)
     if is_wasm_tool then
         return "[decompiled] " .. path
+    end
+
+    if modified then
+        return path .. " [+]"
     end
 
     return path
@@ -10,6 +14,7 @@ end
 
 local function buffername()
     local buffer_name = vim.api.nvim_buf_get_name(0)
+    local modified = vim.api.nvim_buf_get_option(0, "modified")
 
     if buffer_name == "" then
         return "[No Name]"
@@ -32,13 +37,13 @@ local function buffername()
     if utils.starts_with(buffer_name, cwd) then
         local stripped = string.sub(buffer_name, #cwd + 2)
         if stripped == "" then
-            return add_prefix(cwd, is_wasm_tool)
+            return add_prefix(cwd, is_wasm_tool, modified)
         end
 
-        return add_prefix(stripped, is_wasm_tool)
+        return add_prefix(stripped, is_wasm_tool, modified)
     end
 
-    return buffer_name
+    return add_prefix(buffer_name, is_wasm_tool, modified)
 end
 
 return {

@@ -10,11 +10,23 @@ return {
                     typescript = { "prettier" },
                     javascriptreact = { "prettier" },
                     typescriptreact = { "prettier" },
+                    -- javascript = { "oxfmt" },
+                    -- typescript = { "oxfmt" },
+                    -- javascriptreact = { "oxfmt" },
+                    -- typescriptreact = { "oxfmt" },
                     cpp = { "clang-format" },
-                    swift = { "swiftformat" }
+                    swift = { "swiftformat" },
+                    json = { "jq" }
                 },
                 default_format_opts = {
                     lsp_format = "fallback"
+                },
+                formatters = {
+                    oxfmt = {
+                        command = "oxfmt",
+                        args = { "--stdin" },
+                        stdin = true
+                    }
                 },
                 notify_on_error = true,
                 notify_no_formatters = true
