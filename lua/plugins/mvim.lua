@@ -147,10 +147,10 @@ M.reload = function()
 
     M._parse_file()
 
+    local format = require("plugins.format")
+
     if is_new_project then
-        local format = require("plugins.format")
         format.enabled = M.options.format_on_save
-        format.set_ignored_directories(M.options.format_on_save_ignored_directories)
 
         if M.options.copilot then
             vim.cmd([[Copilot enable]])
@@ -158,6 +158,8 @@ M.reload = function()
             vim.cmd([[Copilot disable]])
         end
     end
+
+    format.set_ignored_directories(M.options.format_on_save_ignored_directories)
 
     for lang, configurations in pairs(M.options.debuggers) do
         if lang == "cs" then
