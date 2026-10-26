@@ -56,5 +56,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = '*',
-    callback = function() pcall(vim.treesitter.start) end,
+    callback = function(args)
+        pcall(vim.treesitter.start)
+
+        -- Keep regex syntax for markdown so markdown_fenced_languages (scl, rosetta) still highlights
+        if args.match == "markdown" then
+            vim.bo.syntax = "on"
+        end
+    end,
 })

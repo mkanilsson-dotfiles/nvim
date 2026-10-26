@@ -28,6 +28,12 @@ require("lazy").setup({
             "ellisonleao/gruvbox.nvim",
             priority = 1000,
             config = function()
+                require("gruvbox").setup({
+                    overrides = {
+                        -- No fg, so regex syntax in fenced blocks (scl, rosetta) shows through
+                        ["@markup.raw.block.markdown"] = {},
+                    },
+                })
                 vim.o.background = "dark"
                 vim.cmd("colorscheme gruvbox")
             end
