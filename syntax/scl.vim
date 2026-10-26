@@ -2,7 +2,7 @@ if exists("b:current_syntax")
     finish
 endif
 
-syntax keyword sclKeyword if else proc ret let import struct extern use switch union defer package as while impl this for virtual owned borrowed interface enum const adt pub ref ptr tagged return atomic try inline inlinable macro in throws yield throw
+syntax keyword sclKeyword if else proc ret let import struct extern use switch union defer package as while impl this for virtual owned borrowed interface enum const adt pub ref ptr tagged return atomic try inline inlinable macro in throws yield throw type pkg
 syntax match sclNumber "\<[0-9]+\>"
 syntax match sclOperator "+"
 syntax match sclOperator "-"
