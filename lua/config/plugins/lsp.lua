@@ -17,6 +17,21 @@ return {
         config = function()
             local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+            -- Neovim shrinks markdown floats to their text height before treesitter has
+            -- concealed the code fences, which cuts off the last lines. Re-measure next tick.
+            local open_floating_preview = vim.lsp.util.open_floating_preview
+            vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+                local bufnr, winnr = open_floating_preview(contents, syntax, opts)
+                if not (opts and opts.height) then
+                    vim.schedule(function()
+                        if not vim.api.nvim_win_is_valid(winnr) then return end
+                        local height = vim.api.nvim_win_text_height(winnr, {}).all
+                        vim.api.nvim_win_set_height(winnr, math.min(height, opts and opts.max_height or vim.o.lines - 4))
+                    end)
+                end
+                return bufnr, winnr
+            end
+
             vim.lsp.config("qbels", {
                 cmd = { vim.fn.expand("~/Documents/dev/rust/qbels/target/debug/qbels") },
                 filetypes = { "qbe" },
