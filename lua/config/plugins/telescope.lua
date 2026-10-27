@@ -25,7 +25,7 @@ return {
                     "obj/Debug",
                     "bin/Release",
                     "obj/Release",
-                    "%.git",
+                    "%.git/",
                     "%.zig-cache",
                     "zig-out",
                     "Build/x86_64",
